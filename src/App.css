@@ -20,3 +20,36 @@ a {
   color: blue;
   text-decoration: none;
 }
+
+.custom-file-upload {
+  display: inline-block;
+  padding: 8px 16px; /* 调整内边距以适应内容和保持按钮看起来不那么拥挤 */
+  margin: 0 5px; /* 左右各添加10px的间距 */
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 轻微的阴影效果增加立体感 */
+  text-align: center;
+  line-height: normal;
+}
+
+.custom-file-upload img {
+  height: 20px; /* 设置图标的统一高度 */
+  width: 20px; /* 设置图标的统一宽度 */
+}
+
+.custom-file-upload:hover {
+  background-color: #e0e0e0; /* 悬停时的背景色 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 添加阴影 */
+}
+
+@media (max-width: 600px) {
+  .custom-file-upload {
+      padding: 10px; /* 在小屏幕上增大按钮的点击区域 */
+  }
+}
+
+
+
+
