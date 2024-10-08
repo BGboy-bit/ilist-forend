@@ -59,16 +59,20 @@ function App() {
 
     const uploadFolder = async (event) => {
         const data = new FormData();
-        Array.from(event.target.files).forEach(file => {
-            console.log(file.name + ": " + file.webkitRelativePath);  // 添加此日志
-            data.append('files', file, file.webkitRelativePath);
-        });
-
+        Array.from(event.target.files).forEach((file, index) => {
+            console.log(file.name + ": " + file.webkitRelativePath);  // 打印文件名和路径
+            data.append('files', file); // 将文件添加到 FormData
+            data.append(`paths[${index}]`, file.webkitRelativePath); // 以数组索引的方式添加路径，确保唯一性
+        });        
+        // 查看 FormData 中的内容
+        for (let [key, value] of data.entries()) {
+            console.log(`${key}: ${value}`);
+        }
         setUploading(true);
         try {
             await axios.post(`${BASE_URL}/upload`, data, {
                 params: { path: currentPath },
-                headers: {'Content-Type': 'multipart/form-data'}
+                headers: { 'Content-Type': 'multipart/form-data' }
             });
             fetchFiles(currentPath);
             alert('文件夹上传成功！');
